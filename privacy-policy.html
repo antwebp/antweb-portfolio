@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Политика конфиденциальности — ANTWEB</title>
+<meta name="description" content="Политика обработки персональных данных сайта ANTWEB.">
+<meta name="robots" content="noindex, follow">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress-track"><div class="scroll-progress-fill" id="scrollProgressFill"></div></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <a href="index.html#top" class="logo">ANTWEB</a>
+
+    <nav class="nav-links">
+      <a href="index.html#about">Обо мне</a>
+      <a href="index.html#work">Проекты</a>
+      <a href="index.html#services">Услуги</a>
+      <a href="index.html#process">Как работаю</a>
+      <a href="index.html#contact">Контакты</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="btn btn-primary js-open-modal">Обсудить проект</button>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html#about">Обо мне</a>
+  <a href="index.html#work">Проекты</a>
+  <a href="index.html#services">Услуги</a>
+  <a href="index.html#process">Как работаю</a>
+  <a href="index.html#contact">Контакты</a>
+</nav>
+
+<main id="top">
+
+  <!-- LEGAL -->
+  <section class="about">
+    <div class="container">
+      <p class="eyebrow" data-animate>Документы</p>
+      <h2 data-animate data-animate-delay="1">Политика конфиденциальности</h2>
+
+      <div class="about-body" data-animate data-animate-delay="2" style="margin-top: 32px;">
+        <p>Настоящая политика определяет порядок обработки персональных данных на сайте ANTWEB (далее — «Сайт») в соответствии с Федеральным законом от 27.07.2006 №152-ФЗ «О персональных данных».</p>
+
+        <p><strong>1. Какие данные собираются</strong><br>
+        При заполнении формы заявки на Сайте я получаю имя и номер телефона, указанные вами добровольно.</p>
+
+        <p><strong>2. Цель обработки данных</strong><br>
+        Данные используются исключительно для связи с вами по поводу обсуждения проекта: звонок, сообщение в мессенджере или на почту.</p>
+
+        <p><strong>3. Как обрабатываются данные</strong><br>
+        Заявка с формы направляется напрямую в мой личный Telegram. Данные не передаются третьим лицам, не используются для рассылок и не продаются.</p>
+
+        <p><strong>4. Хранение данных</strong><br>
+        Данные хранятся до момента завершения общения по заявке или до вашего запроса на удаление.</p>
+
+        <p><strong>5. Ваши права</strong><br>
+        Вы можете в любой момент запросить удаление своих данных, написав на <a href="mailto:anton.podg@gmail.com">anton.podg@gmail.com</a> или в Telegram <a href="https://t.me/ant_webp" target="_blank" rel="noopener">@ant_webp</a>.</p>
+
+        <p><strong>6. Согласие</strong><br>
+        Отправляя форму на Сайте, вы подтверждаете согласие на обработку указанных данных на условиях настоящей политики.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© 2026 ANTWEB</span>
+    <div class="footer-links">
+      <a href="index.html">На главную</a>
+    </div>
+  </div>
+</footer>
+
+<button type="button" class="back-to-top" id="backToTop" aria-label="Наверх">↑</button>
+
+<div class="modal-overlay" id="leadModal">
+  <div class="modal">
+    <button type="button" class="modal-close" id="modalClose" aria-label="Закрыть">✕</button>
+    <h3>Обсудим проект</h3>
+    <p class="modal-lead">Оставьте имя и телефон — свяжусь с вами в течение 2–3 часов.</p>
+    <form id="leadForm">
+      <div class="modal-field">
+        <label for="leadName">Имя</label>
+        <input type="text" id="leadName" name="name" required autocomplete="name">
+      </div>
+      <div class="modal-field">
+        <label for="leadPhone">Телефон</label>
+        <input type="tel" id="leadPhone" name="phone" required autocomplete="tel" placeholder="+7 900 000-00-00">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+      <p class="modal-note">Нажимая «Отправить», вы соглашаетесь на обработку данных для связи с вами.</p>
+    </form>
+    <p class="modal-status" id="modalStatus"></p>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

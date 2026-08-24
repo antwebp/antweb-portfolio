@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANTWEB - Антон Подгайный | Веб-разработчик</title>
+<meta name="description" content="Разрабатываю сайты, Telegram-ботов, автоматизации и AI-агентов под ключ. Полный цикл: от идеи до запуска.">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="ANTWEB - Антон Подгайный | Веб-разработчик">
+<meta property="og:description" content="Разрабатываю сайты, Telegram-ботов, автоматизации и AI-агентов под ключ. Полный цикл: от идеи до запуска.">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ANTWEB - Антон Подгайный | Веб-разработчик">
+<meta name="twitter:description" content="Разрабатываю сайты, Telegram-ботов, автоматизации и AI-агентов под ключ. Полный цикл: от идеи до запуска.">
+<meta name="twitter:image" content="assets/og-image.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress-track"><div class="scroll-progress-fill" id="scrollProgressFill"></div></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <a href="#top" class="logo">ANTWEB</a>
+
+    <nav class="nav-links">
+      <a href="#about">Обо мне</a>
+      <a href="#work">Проекты</a>
+      <a href="#services">Услуги</a>
+      <a href="#process">Как работаю</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="btn btn-primary js-open-modal">Обсудить проект</button>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#about">Обо мне</a>
+  <a href="#work">Проекты</a>
+  <a href="#services">Услуги</a>
+  <a href="#process">Как работаю</a>
+  <a href="#contact">Контакты</a>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <h1 data-animate>Создаю сайты и цифровые продукты, которые продают, а не просто красиво выглядят</h1>
+        <p class="hero-lead" data-animate data-animate-delay="2">
+          Полный цикл: от идеи и дизайна до готового продукта. Сайты, Telegram-боты,
+          автоматизации и AI-агенты — с фокусом на результат для вашего бизнеса.
+        </p>
+        <div class="hero-cta" data-animate data-animate-delay="3">
+          <button type="button" class="btn btn-primary js-open-modal">Обсудить проект</button>
+          <a href="#work" class="btn btn-ghost">Смотреть работы</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" data-animate data-animate-delay="2">
+        <div class="hero-photo-frame">
+          <img src="assets/photo.jpg" alt="Антон Подгайный, веб-разработчик">
+          <div class="hero-photo-shield" aria-hidden="true"></div>
+        </div>
+        <div class="hero-caption">
+          <span class="hero-caption-name">Антон Подгайный</span>
+          <span class="hero-caption-role"><span class="dot"></span>Веб-разработчик с опытом более 6 лет</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div>
+        <p class="eyebrow" data-animate>Обо мне</p>
+        <h2 data-animate data-animate-delay="1">Понимаю бизнес-задачу,<br>а не только код</h2>
+
+        <div class="skills-panel">
+          <div class="skills-panel-title">Ключевые навыки</div>
+          <ul>
+            <li data-animate>Сайты и лендинги <span class="check">✓</span></li>
+            <li data-animate data-animate-delay="1">Telegram-боты <span class="check">✓</span></li>
+            <li data-animate data-animate-delay="2">Автоматизация процессов <span class="check">✓</span></li>
+            <li data-animate data-animate-delay="3">AI-агенты и интеграции <span class="check">✓</span></li>
+            <li data-animate data-animate-delay="4">Чёткие сроки и коммуникация <span class="check">✓</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="about-body" data-animate data-animate-delay="1">
+        <p>
+          Прежде чем стать разработчиком, я несколько лет проработал в продажах —
+          в том числе в сфере edtech. Поэтому вижу задачу глазами клиента: сайт или бот
+          должны не просто хорошо выглядеть, а приносить заявки, продажи и экономить время.
+        </p>
+        <p>
+          Работаю без посредников: вы всегда на прямой связи со мной, а не с менеджером
+          или саппортом. Это ускоряет решения и избавляет от «испорченного телефона»
+          на всех этапах проекта.
+        </p>
+        <p>
+          Беру проект от идеи до результата: обсуждаем цель бизнеса, продумываем структуру,
+          делаю дизайн и разработку, тестирую и запускаю. На связи на всех этапах.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat-item" data-animate>
+        <span class="stat-value"><span class="stat-number" data-count-to="5">0</span></span>
+        <span class="stat-label">направлений работы: сайты, боты, автоматизации, AI-агенты</span>
+      </div>
+      <div class="stat-item" data-animate data-animate-delay="1">
+        <span class="stat-value"><span class="stat-number" data-count-to="3">0</span> ч</span>
+        <span class="stat-label">среднее время ответа на заявку</span>
+      </div>
+      <div class="stat-item" data-animate data-animate-delay="2">
+        <span class="stat-value"><span class="stat-number" data-count-to="100">0</span>%</span>
+        <span class="stat-label">фокус на результат, а не на процесс</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="work">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-animate>Портфолио</p>
+          <h2 data-animate data-animate-delay="1">Избранные проекты</h2>
+        </div>
+        <p class="section-head-meta" data-animate data-animate-delay="1">
+          Раздел наполняется — здесь появятся кейсы с результатами
+        </p>
+      </div>
+
+      <div class="project-grid">
+        <!-- TODO: заменить плейсхолдеры на реальные проекты (картинка, название, категория) -->
+        <article class="project-card" data-animate>
+          <div class="project-thumb">
+            <div class="project-placeholder">Скрин проекта</div>
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Название проекта</h3>
+              <p>Категория / стек</p>
+            </div>
+            <span class="project-index">01</span>
+          </div>
+        </article>
+
+        <article class="project-card" data-animate data-animate-delay="1">
+          <div class="project-thumb">
+            <div class="project-placeholder">Скрин проекта</div>
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Название проекта</h3>
+              <p>Категория / стек</p>
+            </div>
+            <span class="project-index">02</span>
+          </div>
+        </article>
+
+        <article class="project-card" data-animate data-animate-delay="2">
+          <div class="project-thumb">
+            <div class="project-placeholder">Скрин проекта</div>
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Название проекта</h3>
+              <p>Категория / стек</p>
+            </div>
+            <span class="project-index">03</span>
+          </div>
+        </article>
+
+        <article class="project-card" data-animate data-animate-delay="3">
+          <div class="project-thumb">
+            <div class="project-placeholder">Скрин проекта</div>
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Название проекта</h3>
+              <p>Категория / стек</p>
+            </div>
+            <span class="project-index">04</span>
+          </div>
+        </article>
+
+        <article class="project-card" data-animate data-animate-delay="4">
+          <div class="project-thumb">
+            <div class="project-placeholder">Скрин проекта</div>
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Название проекта</h3>
+              <p>Категория / стек</p>
+            </div>
+            <span class="project-index">05</span>
+          </div>
+        </article>
+
+        <article class="project-card" data-animate data-animate-delay="5">
+          <div class="project-thumb">
+            <div class="project-placeholder">Скрин проекта</div>
+          </div>
+          <div class="project-info">
+            <div>
+              <h3>Название проекта</h3>
+              <p>Категория / стек</p>
+            </div>
+            <span class="project-index">06</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container services-grid">
+      <div>
+        <p class="eyebrow" data-animate>Услуги и стоимость</p>
+        <h2 data-animate data-animate-delay="1">Чем могу помочь</h2>
+        <p class="services-lead" data-animate data-animate-delay="2">
+          Прозрачные условия и понятные этапы работы. Финальная цена зависит от объёма
+          задач — обсудим на созвоне.
+        </p>
+      </div>
+
+      <div>
+        <div class="service-row" data-animate>
+          <div>
+            <h3>Лендинг</h3>
+            <p>Сайт-визитка или промо-страница под конкретную цель: продать, собрать заявки, презентовать продукт.</p>
+          </div>
+          <span class="service-price">от 40 000 ₽</span>
+        </div>
+
+        <div class="service-row" data-animate data-animate-delay="1">
+          <div>
+            <h3>Многостраничный сайт</h3>
+            <p>Корпоративный сайт или интернет-магазин с каталогом товаров, несколькими разделами и удобной навигацией.</p>
+          </div>
+          <span class="service-price">от 80 000 ₽</span>
+        </div>
+
+        <div class="service-row" data-animate data-animate-delay="2">
+          <div>
+            <h3>Telegram-бот</h3>
+            <p>Бот для заявок, продаж, записи клиентов или поддержки — под ваш процесс.</p>
+          </div>
+          <span class="service-price">от 15 000 ₽</span>
+        </div>
+
+        <div class="service-row" data-animate data-animate-delay="3">
+          <div>
+            <h3>Автоматизация</h3>
+            <p>Связываю сервисы между собой, убираю рутину: CRM, таблицы, уведомления, документы.</p>
+          </div>
+          <span class="service-price">от 50 000 ₽</span>
+        </div>
+
+        <div class="service-row" data-animate data-animate-delay="4">
+          <div>
+            <h3>AI-агент</h3>
+            <p>Умный помощник для бизнеса: отвечает клиентам, обрабатывает заявки, работает с базой знаний.</p>
+          </div>
+          <span class="service-price">от 150 000 ₽</span>
+        </div>
+
+        <div class="service-row" data-animate data-animate-delay="5">
+          <div>
+            <h3>Сопровождение</h3>
+            <p>Поддержка после запуска: доработки, новые функции, регулярные обновления.</p>
+          </div>
+          <span class="service-price">от 3 000 ₽ / мес</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-animate>Как я работаю</p>
+          <h2 data-animate data-animate-delay="1">От заявки до запуска</h2>
+        </div>
+      </div>
+
+      <div class="process-list">
+        <div class="process-row" data-animate>
+          <span class="process-num">01</span>
+          <div>
+            <h3>Заявка</h3>
+            <p>Оставляете заявку на сайте или пишете в Telegram — отвечаю в течение 2–3 часов.</p>
+          </div>
+        </div>
+
+        <div class="process-row" data-animate data-animate-delay="1">
+          <span class="process-num">02</span>
+          <div>
+            <h3>Созвон</h3>
+            <p>Обсуждаем цель, бюджет и сроки. Формирую понятное техническое задание. Предоплата 50%.</p>
+          </div>
+        </div>
+
+        <div class="process-row" data-animate data-animate-delay="2">
+          <span class="process-num">03</span>
+          <div>
+            <h3>Дизайн и структура</h3>
+            <p>Прототип и визуальный стиль — согласовываем до начала разработки.</p>
+          </div>
+        </div>
+
+        <div class="process-row" data-animate data-animate-delay="3">
+          <span class="process-num">04</span>
+          <div>
+            <h3>Разработка</h3>
+            <p>Собираю сайт, показываю промежуточные результаты, держу на связи.</p>
+          </div>
+        </div>
+
+        <div class="process-row" data-animate data-animate-delay="4">
+          <span class="process-num">05</span>
+          <div>
+            <h3>Запуск и поддержка</h3>
+            <p>Тестирую, публикую и остаюсь на связи для доработок после старта.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <p class="eyebrow" data-animate>Вопросы</p>
+      <h2 data-animate data-animate-delay="1">Частые вопросы</h2>
+
+      <div class="faq-list">
+        <details class="faq-item" data-animate>
+          <summary>Сколько времени занимает разработка?</summary>
+          <p>Лендинг обычно занимает 5–10 дней, многостраничный сайт или интернет-магазин — от 2 до 4 недель. Точные сроки фиксируем на созвоне после обсуждения задачи.</p>
+        </details>
+
+        <details class="faq-item" data-animate data-animate-delay="1">
+          <summary>Как происходит оплата?</summary>
+          <p>Работаю по предоплате 30–50%, остаток — после сдачи проекта. Для крупных проектов возможна оплата по этапам.</p>
+        </details>
+
+        <details class="faq-item" data-animate data-animate-delay="2">
+          <summary>Вы делаете дизайн сами или только код?</summary>
+          <p>Делаю дизайн и разработку сам — не нужно искать отдельного дизайнера и тратить время на согласования между разными людьми.</p>
+        </details>
+
+        <details class="faq-item" data-animate data-animate-delay="3">
+          <summary>Что происходит после запуска сайта?</summary>
+          <p>14 дней бесплатно исправляю баги. Дальше — по договорённости: разовые доработки или сопровождение на регулярной основе.</p>
+        </details>
+
+        <details class="faq-item" data-animate data-animate-delay="4">
+          <summary>Можно ли вносить правки в дизайн?</summary>
+          <p>Да, на этапе согласования прототипа и дизайна вносим правки без ограничений, пока не найдём нужный вариант.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <p class="eyebrow" data-animate>Контакты</p>
+      <h2 data-animate data-animate-delay="1">Готовы обсудить идею?</h2>
+      <p class="contact-lead" data-animate data-animate-delay="2">
+        Выберите удобный способ связи. Обычно отвечаю в течение 2–3 часов.
+      </p>
+
+      <div class="contact-grid">
+        <a href="tel:+79221101310" class="contact-card" data-animate>
+          <span class="label">Телефон</span>
+          <span class="value">+7 922 110-13-10 <span class="icon">↗</span></span>
+        </a>
+
+        <a href="mailto:anton.podg@gmail.com" class="contact-card" data-animate data-animate-delay="1">
+          <span class="label">Email</span>
+          <span class="value">anton.podg@gmail.com <span class="icon">↗</span></span>
+        </a>
+
+        <a href="https://t.me/ant_webp" target="_blank" rel="noopener" class="contact-card" data-animate data-animate-delay="2">
+          <span class="label">Telegram</span>
+          <span class="value">@ant_webp <span class="icon">↗</span></span>
+        </a>
+
+        <button type="button" class="contact-card primary js-open-modal" data-animate data-animate-delay="3">
+          <span class="label">Написать сейчас</span>
+          <span class="value">Сообщение <span class="icon">↗</span></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© 2026 ANTWEB</span>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+<button type="button" class="back-to-top" id="backToTop" aria-label="Наверх">↑</button>
+
+<div class="modal-overlay" id="leadModal">
+  <div class="modal">
+    <button type="button" class="modal-close" id="modalClose" aria-label="Закрыть">✕</button>
+    <h3>Обсудим проект</h3>
+    <p class="modal-lead">Оставьте имя и телефон — свяжусь с вами в течение 2–3 часов.</p>
+    <form id="leadForm">
+      <div class="modal-field">
+        <label for="leadName">Имя</label>
+        <input type="text" id="leadName" name="name" required autocomplete="name">
+      </div>
+      <div class="modal-field">
+        <label for="leadPhone">Телефон</label>
+        <input type="tel" id="leadPhone" name="phone" required autocomplete="tel" placeholder="+7 900 000-00-00">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+      <p class="modal-note">Нажимая «Отправить», вы соглашаетесь на обработку данных для связи с вами.</p>
+    </form>
+    <p class="modal-status" id="modalStatus"></p>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
