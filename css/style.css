@@ -14,7 +14,7 @@
   --accent-dark: #000000;
   --accent-hover: #9f2933;
 
-  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-display: "Golos Text", "Inter", sans-serif;
   --font-body: "Inter", sans-serif;
 
   --container: 1200px;
@@ -140,6 +140,174 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
+   Preloader
+   ========================================================================== */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--accent-dark);
+  color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 48px;
+  transition: opacity 0.6s var(--ease), visibility 0.6s var(--ease);
+}
+
+.preloader-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.preloader-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+
+.preloader-count {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(52px, 11vw, 104px);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.preloader-caption {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: rgba(250, 250, 248, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.preloader-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(250, 250, 248, 0.12);
+}
+
+.preloader-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--bg);
+  transition: width 0.15s linear;
+}
+
+.preloader.done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .preloader {
+    padding: 0 24px;
+  }
+}
+
+body.preload-lock {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Grain overlay
+   ========================================================================== */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   Section dot navigation
+   ========================================================================== */
+.section-dots {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: var(--border);
+  cursor: pointer;
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.section-dots button:hover {
+  background: var(--text-faint);
+}
+
+.section-dots button.active {
+  background: var(--accent-hover);
+  transform: scale(1.5);
+}
+
+@media (max-width: 1180px) {
+  .section-dots {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Easter egg toast
+   ========================================================================== */
+.easter-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: var(--text);
+  color: var(--bg);
+  padding: 14px 26px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 400;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+  white-space: nowrap;
+}
+
+.easter-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+#logoMark.egg-spin {
+  display: inline-block;
+  animation: logoSpin 0.7s var(--ease);
+}
+
+@keyframes logoSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
    Scroll reveal
    ========================================================================== */
 [data-animate] {
@@ -258,6 +426,19 @@ h1, h2, h3, h4 {
   transform-origin: left;
 }
 
+.nav-links a.active {
+  color: var(--text);
+}
+
+.nav-links a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.site-header.on-dark .nav-links a.active {
+  color: #fff;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -278,7 +459,41 @@ h1, h2, h3, h4 {
   height: 2px;
   background: var(--text);
   border-radius: 2px;
-  transition: transform 0.35s var(--ease), opacity 0.35s var(--ease);
+  transition: transform 0.35s var(--ease), opacity 0.35s var(--ease), background 0.3s var(--ease);
+}
+
+/* Header adapts to dark sections scrolling underneath it */
+.site-header.on-dark .logo,
+.site-header.on-dark .nav-links a {
+  color: #fff;
+}
+
+.site-header.on-dark .nav-links a:hover {
+  color: var(--accent-hover);
+}
+
+.site-header.on-dark .burger span {
+  background: #fff;
+}
+
+.site-header.on-dark .btn-ghost {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.site-header.on-dark .btn-ghost:hover {
+  border-color: var(--accent-hover);
+  color: var(--accent-hover);
+}
+
+.site-header.on-dark .btn-primary {
+  background: #fff;
+  color: var(--accent-dark);
+}
+
+.site-header.on-dark.scrolled {
+  background: rgba(10, 10, 10, 0.78);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 
 /* ==========================================================================
@@ -338,6 +553,18 @@ h1, h2, h3, h4 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  animation: kenBurns 16s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurns {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo-frame img {
+    animation: none;
+  }
 }
 
 .hero-photo-shield {
@@ -385,9 +612,33 @@ h1, h2, h3, h4 {
    ========================================================================== */
 .about {
   padding: 140px 0;
+  overflow: hidden;
+}
+
+.about-decor {
+  position: absolute;
+  top: -30px;
+  right: -10px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(180px, 22vw, 340px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--border);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+@media (max-width: 980px) {
+  .about-decor {
+    display: none;
+  }
 }
 
 .about-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: 70px;
@@ -481,8 +732,24 @@ h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(36px, 5vw, 56px);
+  font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
   display: block;
+  filter: blur(10px);
+  opacity: 0;
+  transition: filter 0.8s var(--ease), opacity 0.8s var(--ease);
+}
+
+.stat-value.revealed {
+  filter: blur(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-value {
+    filter: none;
+    opacity: 1;
+  }
 }
 
 .stat-label {
@@ -524,8 +791,8 @@ h1, h2, h3, h4 {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px 32px;
 }
 
 .project-card {
@@ -568,30 +835,19 @@ h1, h2, h3, h4 {
 }
 
 .project-info {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 20px 0 0;
-  gap: 12px;
+  padding: 22px 0 0;
 }
 
 .project-info h3 {
-  font-size: 16.5px;
+  font-size: 19px;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   transition: color 0.3s var(--ease);
 }
 
 .project-info p {
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--text-faint);
-}
-
-.project-index {
-  font-family: var(--font-display);
-  font-size: 13px;
-  color: var(--text-faint);
-  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -644,9 +900,36 @@ h1, h2, h3, h4 {
   padding-left: 12px;
 }
 
-.service-row h3 {
-  font-size: 20px;
+.service-row-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 10px;
+}
+
+.service-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  color: var(--text-faint);
+  transition: color 0.3s var(--ease);
+}
+
+.service-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.service-row:hover .service-icon {
+  color: var(--accent-hover);
+}
+
+.service-row .service-row-head h3 {
+  font-size: 20px;
+  margin-bottom: 0;
   transition: color 0.3s var(--ease);
 }
 
@@ -734,6 +1017,18 @@ h1, h2, h3, h4 {
   color: var(--text-muted);
   font-size: 14.5px;
   max-width: 480px;
+}
+
+/* Dark section variant — redefines tokens locally, children inherit automatically */
+.process[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --text: #fafaf8;
+  --text-muted: #b8b6ad;
+  --text-faint: #6f6d64;
+  --border: rgba(255, 255, 255, 0.14);
+  --accent-soft: rgba(255, 255, 255, 0.08);
+  background: var(--bg);
+  color: var(--text);
 }
 
 /* ==========================================================================
@@ -911,6 +1206,33 @@ h1, h2, h3, h4 {
 
 .contact-card.primary:hover .label {
   color: rgba(255, 255, 255, 0.7);
+}
+
+/* ==========================================================================
+   404
+   ========================================================================== */
+.not-found {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 160px 0 100px;
+  text-align: center;
+}
+
+.not-found .container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.not-found h1 {
+  font-size: clamp(30px, 4.4vw, 48px);
+  margin: 18px 0 20px;
+}
+
+.not-found-lead {
+  color: var(--text-muted);
+  font-size: 16.5px;
+  margin-bottom: 36px;
 }
 
 /* ==========================================================================
@@ -1144,10 +1466,6 @@ body.modal-open {
 
   .hero {
     padding: 150px 0 80px;
-  }
-
-  .project-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .contact-grid {

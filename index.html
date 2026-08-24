@@ -19,16 +19,31 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Golos+Text:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<div class="preloader" id="preloader">
+  <div class="preloader-top">
+    <span class="preloader-logo">ANTWEB</span>
+    <span class="preloader-count" id="preloaderCount">0%</span>
+  </div>
+  <span class="preloader-caption">Собираю сайт</span>
+  <div class="preloader-bar"><div class="preloader-bar-fill" id="preloaderBarFill"></div></div>
+</div>
+
+<div class="grain-overlay" aria-hidden="true"></div>
+
 <div class="scroll-progress-track"><div class="scroll-progress-fill" id="scrollProgressFill"></div></div>
+
+<nav class="section-dots" id="sectionDots" aria-label="Навигация по разделам"></nav>
+
+<div class="easter-toast" id="easterToast">Любите детали? Мне тоже.</div>
 
 <header class="site-header" id="siteHeader">
   <div class="container">
-    <a href="#top" class="logo">ANTWEB</a>
+    <a href="#top" class="logo" id="logoMark">ANTWEB</a>
 
     <nav class="nav-links">
       <a href="#about">Обо мне</a>
@@ -58,7 +73,7 @@
 <main id="top">
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="heroSection">
     <div class="container">
       <div class="hero-text">
         <h1 data-animate>Создаю сайты и цифровые продукты, которые продают, а не просто красиво выглядят</h1>
@@ -87,6 +102,7 @@
 
   <!-- ABOUT -->
   <section class="about" id="about">
+    <span class="about-decor" aria-hidden="true">06</span>
     <div class="container about-grid">
       <div>
         <p class="eyebrow" data-animate>Обо мне</p>
@@ -155,17 +171,14 @@
       </div>
 
       <div class="project-grid">
-        <!-- TODO: заменить плейсхолдеры на реальные проекты (картинка, название, категория) -->
+        <!-- TODO: заменить плейсхолдеры на реальные проекты (картинка, название, категория/стек) -->
         <article class="project-card" data-animate>
           <div class="project-thumb">
             <div class="project-placeholder">Скрин проекта</div>
           </div>
           <div class="project-info">
-            <div>
-              <h3>Название проекта</h3>
-              <p>Категория / стек</p>
-            </div>
-            <span class="project-index">01</span>
+            <h3>Название проекта</h3>
+            <p>Категория / стек</p>
           </div>
         </article>
 
@@ -174,11 +187,8 @@
             <div class="project-placeholder">Скрин проекта</div>
           </div>
           <div class="project-info">
-            <div>
-              <h3>Название проекта</h3>
-              <p>Категория / стек</p>
-            </div>
-            <span class="project-index">02</span>
+            <h3>Название проекта</h3>
+            <p>Категория / стек</p>
           </div>
         </article>
 
@@ -187,11 +197,8 @@
             <div class="project-placeholder">Скрин проекта</div>
           </div>
           <div class="project-info">
-            <div>
-              <h3>Название проекта</h3>
-              <p>Категория / стек</p>
-            </div>
-            <span class="project-index">03</span>
+            <h3>Название проекта</h3>
+            <p>Категория / стек</p>
           </div>
         </article>
 
@@ -200,37 +207,8 @@
             <div class="project-placeholder">Скрин проекта</div>
           </div>
           <div class="project-info">
-            <div>
-              <h3>Название проекта</h3>
-              <p>Категория / стек</p>
-            </div>
-            <span class="project-index">04</span>
-          </div>
-        </article>
-
-        <article class="project-card" data-animate data-animate-delay="4">
-          <div class="project-thumb">
-            <div class="project-placeholder">Скрин проекта</div>
-          </div>
-          <div class="project-info">
-            <div>
-              <h3>Название проекта</h3>
-              <p>Категория / стек</p>
-            </div>
-            <span class="project-index">05</span>
-          </div>
-        </article>
-
-        <article class="project-card" data-animate data-animate-delay="5">
-          <div class="project-thumb">
-            <div class="project-placeholder">Скрин проекта</div>
-          </div>
-          <div class="project-info">
-            <div>
-              <h3>Название проекта</h3>
-              <p>Категория / стек</p>
-            </div>
-            <span class="project-index">06</span>
+            <h3>Название проекта</h3>
+            <p>Категория / стек</p>
           </div>
         </article>
       </div>
@@ -252,7 +230,17 @@
       <div>
         <div class="service-row" data-animate>
           <div>
-            <h3>Лендинг</h3>
+            <div class="service-row-head">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="16" rx="1"></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <circle cx="6" cy="6.5" r="0.6" fill="currentColor" stroke="none"></circle>
+                  <circle cx="8.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"></circle>
+                </svg>
+              </span>
+              <h3>Лендинг</h3>
+            </div>
             <p>Сайт-визитка или промо-страница под конкретную цель: продать, собрать заявки, презентовать продукт.</p>
           </div>
           <span class="service-price">от 40 000 ₽</span>
@@ -260,7 +248,15 @@
 
         <div class="service-row" data-animate data-animate-delay="1">
           <div>
-            <h3>Многостраничный сайт</h3>
+            <div class="service-row-head">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="3" width="14" height="14" rx="1"></rect>
+                  <path d="M4 7v14h14"></path>
+                </svg>
+              </span>
+              <h3>Многостраничный сайт</h3>
+            </div>
             <p>Корпоративный сайт или интернет-магазин с каталогом товаров, несколькими разделами и удобной навигацией.</p>
           </div>
           <span class="service-price">от 80 000 ₽</span>
@@ -268,7 +264,15 @@
 
         <div class="service-row" data-animate data-animate-delay="2">
           <div>
-            <h3>Telegram-бот</h3>
+            <div class="service-row-head">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 3 3 10.5l7 2.5"></path>
+                  <path d="M21 3 13 21l-3-8 11-10Z"></path>
+                </svg>
+              </span>
+              <h3>Telegram-бот</h3>
+            </div>
             <p>Бот для заявок, продаж, записи клиентов или поддержки — под ваш процесс.</p>
           </div>
           <span class="service-price">от 15 000 ₽</span>
@@ -276,7 +280,15 @@
 
         <div class="service-row" data-animate data-animate-delay="3">
           <div>
-            <h3>Автоматизация</h3>
+            <div class="service-row-head">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3.2"></circle>
+                  <path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3 5.6 5.6"></path>
+                </svg>
+              </span>
+              <h3>Автоматизация</h3>
+            </div>
             <p>Связываю сервисы между собой, убираю рутину: CRM, таблицы, уведомления, документы.</p>
           </div>
           <span class="service-price">от 50 000 ₽</span>
@@ -284,7 +296,14 @@
 
         <div class="service-row" data-animate data-animate-delay="4">
           <div>
-            <h3>AI-агент</h3>
+            <div class="service-row-head">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+                  <path d="M12 2 14 10 22 12 14 14 12 22 10 14 2 12 10 10 Z"></path>
+                </svg>
+              </span>
+              <h3>AI-агент</h3>
+            </div>
             <p>Умный помощник для бизнеса: отвечает клиентам, обрабатывает заявки, работает с базой знаний.</p>
           </div>
           <span class="service-price">от 150 000 ₽</span>
@@ -292,7 +311,15 @@
 
         <div class="service-row" data-animate data-animate-delay="5">
           <div>
-            <h3>Сопровождение</h3>
+            <div class="service-row-head">
+              <span class="service-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"></path>
+                  <path d="M9 12l2 2 4-4"></path>
+                </svg>
+              </span>
+              <h3>Сопровождение</h3>
+            </div>
             <p>Поддержка после запуска: доработки, новые функции, регулярные обновления.</p>
           </div>
           <span class="service-price">от 3 000 ₽ / мес</span>
@@ -303,7 +330,7 @@
   </section>
 
   <!-- PROCESS -->
-  <section class="process" id="process">
+  <section class="process" id="process" data-theme="dark">
     <div class="container">
       <div class="section-head">
         <div>
