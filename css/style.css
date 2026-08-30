@@ -119,12 +119,6 @@ section {
     z-index: 0;
     background: var(--bg);
   }
-
-  /* запас в конце main = высоте футера: контактная секция замерзает,
-     и футер наезжает на неё, а не просто подкручивается следом */
-  main {
-    padding-bottom: 100vh;
-  }
 }
 
 .eyebrow {
@@ -1738,6 +1732,9 @@ body.menu-open {
   overflow: hidden;
   min-height: 100svh;
   padding-top: 48px;
+  /* блюр/прозрачность из script.js — проявление при заходе на экран;
+     will-change держит футер на своём слое, чтобы блюр не дёргался */
+  will-change: filter, opacity;
 }
 
 @media (min-width: 1024px) {

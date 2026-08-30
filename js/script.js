@@ -99,10 +99,24 @@ const onScroll = () => {
   }
 
   if (siteFooter) {
-    header.classList.toggle(
-      'footer-reached',
-      siteFooter.getBoundingClientRect().top <= header.offsetHeight
-    );
+    const footerTop = siteFooter.getBoundingClientRect().top;
+    header.classList.toggle('footer-reached', footerTop <= header.offsetHeight);
+
+    // как у good-fella: пока футер только заходит на экран — он размыт
+    // и полупрозрачен, чем дальше листаешь — тем чётче. Проявление идёт
+    // на первых ~80% высоты вьюпорта, к моменту «футер дошёл до шапки»
+    // он уже полностью чёткий.
+    if (!prefersReducedMotion) {
+      const vh = window.innerHeight;
+      const p = Math.min(1, Math.max(0, (vh - footerTop) / (vh * 0.8)));
+      if (p >= 1) {
+        siteFooter.style.filter = '';
+        siteFooter.style.opacity = '';
+      } else {
+        siteFooter.style.filter = `blur(${((1 - p) * 12).toFixed(2)}px)`;
+        siteFooter.style.opacity = (0.45 + 0.55 * p).toFixed(3);
+      }
+    }
   }
 
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
