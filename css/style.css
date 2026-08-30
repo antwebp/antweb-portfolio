@@ -2616,9 +2616,14 @@ body.modal-open {
     min-height: calc(var(--strip-h) + 8px);
   }
 
+  /* как просил Антон: на мобильном кнопка МЕНЮ справа, с тем же отступом
+     что и логотип слева (edge + menu-inset) */
   .menu-toggle {
-    position: static;
-    transform: none;
+    position: absolute;
+    left: auto;
+    right: calc(var(--edge) + var(--menu-inset, 0px));
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .burger {
