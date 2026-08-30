@@ -95,6 +95,9 @@
   // ---------- панели ----------
   const img = new Image();
   img.decoding = 'async';
+  img.onerror = () => {
+    panels.forEach((p) => { p.style.display = 'none'; });
+  };
   img.onload = () => {
     let cut;
     try {

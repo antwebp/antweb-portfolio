@@ -2097,14 +2097,13 @@ body.menu-open {
   user-select: none;
   pointer-events: none;
   transform: translateY(12%);
+  margin-bottom: -0.05em; /* обрезаем «хвост» межстрочного интервала */
 }
 
 /* вторая половина — курсивом, как «Fella» у Good Fella */
 .footer-watermark-i {
   font-style: italic;
   letter-spacing: -0.02em;
-}
-  margin-bottom: -0.05em;
 }
 
 /* ---------- ASCII-арт по бокам (руки у оригинала) ---------- */
