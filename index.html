@@ -989,11 +989,20 @@ function init(src) {
     renderer.setSize(w, h);
     uniforms.uResolution.value.set(w * DPR, h * DPR);
     uniforms.uCellSize.value = 8 * DPR; // 8px буфера — как у них (cellSize: 8)
-    // cover-подгонка
+    // подгонка фото
     const canvasAspect = w / h, imgAspect = src.width / src.height;
-    // contain: всё фото целиком (как fit:"contain" у них)
-    if (imgAspect > canvasAspect) uniforms.uCoverScale.value.set(1, imgAspect / canvasAspect);
-    else uniforms.uCoverScale.value.set(canvasAspect / imgAspect, 1);
+    // десктоп (правая половина hero): cover — заполняет весь стейдж,
+    // лишнее обрезается по вертикали (утверждённый вид)
+    // ≤980px (плитка под текстом): contain — модель видна ЦЕЛИКОМ,
+    // по бокам пусто; раньше cover на широком низком стейже обрезал бока
+    // портрета, из-за чего на планшетах часть модели пропадала
+    if (window.matchMedia('(max-width: 980px)').matches) {
+      if (imgAspect > canvasAspect) uniforms.uCoverScale.value.set(1, canvasAspect / imgAspect);
+      else uniforms.uCoverScale.value.set(imgAspect / canvasAspect, 1);
+    } else {
+      if (imgAspect > canvasAspect) uniforms.uCoverScale.value.set(1, imgAspect / canvasAspect);
+      else uniforms.uCoverScale.value.set(canvasAspect / imgAspect, 1);
+    }
   }
   resize();
   window.addEventListener('resize', resize);
