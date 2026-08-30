@@ -1747,6 +1747,29 @@ body.menu-open .site-header {
   margin-bottom: 36px;
 }
 
+/* 404 на всю высоту экрана: main растягивается, футер прижат к низу */
+body.page-404 {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+body.page-404 main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+body.page-404 .not-found {
+  flex: 1;
+  min-height: 0;
+}
+
+/* кнопка «На главную» — как CTA-акцент на главной, ей нужен отступ */
+.not-found-cta {
+  margin-top: 4px;
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */
