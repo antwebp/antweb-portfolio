@@ -1732,9 +1732,9 @@ body.menu-open {
   overflow: hidden;
   min-height: 100svh;
   padding-top: 48px;
-  /* блюр/прозрачность из script.js — проявление при заходе на экран;
-     will-change держит футер на своём слое, чтобы блюр не дёргался */
-  will-change: filter, opacity;
+  /* transform/opacity из script.js — параллакс-подъём и проявление контента
+     при заходе на экран; will-change держит футер на своём слое */
+  will-change: transform;
 }
 
 @media (min-width: 1024px) {

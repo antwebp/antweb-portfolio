@@ -91,6 +91,8 @@ const scrollProgressFill = document.getElementById('scrollProgressFill');
 const backToTop = document.getElementById('backToTop');
 // как у good-fella: когда футер доходит до шапки, шапка уезжает вверх
 const siteFooter = document.querySelector('.site-footer');
+const footerInner = document.querySelector('.footer-inner');
+let footerShiftPct = 0; // последний применённый сдвиг футера, % его высоты
 const onScroll = () => {
   if (window.scrollY > 40) {
     header.classList.add('scrolled');
@@ -102,20 +104,20 @@ const onScroll = () => {
     const footerTop = siteFooter.getBoundingClientRect().top;
     header.classList.toggle('footer-reached', footerTop <= header.offsetHeight);
 
-    // как у good-fella: пока футер только заходит на экран — он размыт
-    // и полупрозрачен, чем дальше листаешь — тем чётче. Проявление идёт
-    // на первых ~80% высоты вьюпорта, к моменту «футер дошёл до шапки»
-    // он уже полностью чёткий.
+    // как у good-fella (их FooterClient): фон футера поднимается «с опережением» —
+    // стартует на 20% собственной высоты выше и доезжает до натурального места,
+    // а контент футера за это же время проявляется из прозрачного. Выглядит
+    // как мягкое размытое полотно, которое «собирается» в чёткий футер.
+    // rect футера включает сдвиг transform, поэтому натуральный top
+    // восстанавливаем вычитанием последнего применённого сдвига.
     if (!prefersReducedMotion) {
+      const rect = siteFooter.getBoundingClientRect();
       const vh = window.innerHeight;
-      const p = Math.min(1, Math.max(0, (vh - footerTop) / (vh * 0.8)));
-      if (p >= 1) {
-        siteFooter.style.filter = '';
-        siteFooter.style.opacity = '';
-      } else {
-        siteFooter.style.filter = `blur(${((1 - p) * 12).toFixed(2)}px)`;
-        siteFooter.style.opacity = (0.45 + 0.55 * p).toFixed(3);
-      }
+      const naturalTop = rect.top - (footerShiftPct / 100) * rect.height;
+      const s = Math.min(1, Math.max(0, (vh - naturalTop) / rect.height));
+      footerShiftPct = -20 + 20 * s;
+      siteFooter.style.transform = `translate3d(0, ${(-20 + 20 * s).toFixed(3)}%, 0)`;
+      if (footerInner) footerInner.style.opacity = s.toFixed(3);
     }
   }
 
