@@ -2675,6 +2675,18 @@ body.modal-open {
   }
 }
 
+/* Блок в конце файла: перекивает более поздние padding-правила секций.
+   На широких экранах точки навигации (fixed, right 28px) висят у правого
+   края — отодвигаем интерактивные элементы («+» в FAQ, стрелки в контактах,
+   ценовые бейджи в услугах) левее, чтобы они не перекрывались точками */
+@media (min-width: 1181px) {
+  .faq .container,
+  .contact-inner,
+  .services .container {
+    padding-right: calc(var(--edge) + 44px);
+  }
+}
+
 body.menu-open {
   overflow: hidden;
 }
