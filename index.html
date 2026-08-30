@@ -647,8 +647,6 @@
   </div>
 </div>
 
-<div class="hero-cursor-dot" id="cursor-dot" aria-hidden="true"></div>
-
 <script type="importmap">
 { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
 </script>
@@ -667,7 +665,7 @@ import * as THREE from 'three';
 THREE.ColorManagement.enabled = false;
 
 const stage = document.getElementById('stage');
-const cursorDot = document.getElementById('cursor-dot');
+// красная точка-курсор удалена: на стейдже обычный cursor: pointer
 
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.getElementById('stage').classList.add('ascii-failed');
@@ -1016,12 +1014,10 @@ function init(src) {
 
   stage.addEventListener('mouseenter', () => {
     hovering = true;
-    cursorDot.style.opacity = '1';
     uniforms.uScrambleSeed.value += 1; // перемешивание символов один раз при входе — как у них
   });
   stage.addEventListener('mouseleave', () => {
     hovering = false;
-    cursorDot.style.opacity = '0';
     uniforms.uMouse.value.set(-1, -1);
   });
   window.addEventListener('mousemove', (e) => {
@@ -1030,8 +1026,6 @@ function init(src) {
       (e.clientX - r.left) / r.width,
       1 - (e.clientY - r.top) / r.height
     );
-    cursorDot.style.left = e.clientX + 'px';
-    cursorDot.style.top = e.clientY + 'px';
   });
 
   // ---- клик: цветная волна от точки клика ----

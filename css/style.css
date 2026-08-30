@@ -857,7 +857,7 @@ body.menu-open .site-header {
   right: 0;
   bottom: 0;
   width: min(46vw, 780px);
-  cursor: none;
+  cursor: pointer; /* как на кнопках — рука */
   z-index: 1;
 }
 
@@ -881,20 +881,6 @@ body.menu-open .site-header {
 
 .hero-stage.ascii-failed .ascii-fallback {
   display: block;
-}
-
-/* Красная точка-курсор над ASCII-портретом */
-.hero-cursor-dot {
-  position: fixed;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #f5132e;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.25s;
-  z-index: 160;
 }
 
 .hero-content {
