@@ -999,23 +999,13 @@ function init(src) {
     uniforms.uColorDark.value.set(
       window.matchMedia('(max-width: 980px)').matches ? '#b0402f' : '#6e2118'
     );
-    // подгонка фото (contain при любой раскладке: вся модель с полями)
+    // подгонка фото (contain при любой раскладке: вся модель с полями).
+    // НЕ менять (проверено на всех расширениях: модель всегда вписана целиком,
+    // перепутанные оси дают растянутую модель, поднятый порог яркости —
+    // равномерный шум вместо силуэта — обе версии Антон забраковал)
     const canvasAspect = w / h, imgAspect = src.width / src.height;
     if (imgAspect > canvasAspect) uniforms.uCoverScale.value.set(1, imgAspect / canvasAspect);
     else uniforms.uCoverScale.value.set(canvasAspect / imgAspect, 1);
-    // ширина модели на экране: на небольшом канвасе (планшет, мобильный)
-    // 60% буста — почти чёрные клетки: с порогом 0.15 они получают
-    // символ-пробел и модель выглядит «закрытой» наполовину.
-    // На мелких канвасах порог ниже и тени светлее — модель отрисована
-    // целиком; на десктопном канвасе ≥662px всё как было (утверждено)
-    const modelW = Math.min(w, h * imgAspect);
-    if (modelW < 520) {
-      uniforms.uLumFloor.value = -0.35;
-      uniforms.uColorDark.value.set('#9c4130');
-    } else {
-      uniforms.uLumFloor.value = 0.15;
-      uniforms.uColorDark.value.set('#6e2118');
-    }
   }
   resize();
   window.addEventListener('resize', resize);
