@@ -1706,7 +1706,7 @@ body.menu-open {
 /* Футер как у good-fella (FooterClient): тёмный, высотой в экран (lg),
    12-колоночная сетка — подписка + статус слева / навигация по центру /
    подчёркнутые ссылки справа; копирайт по центру ниже; внизу гигантский
-   водяной знак; по бокам ASCII-арт (панели шириной в полфутера) */
+   водяной знак; по бокам пусто */
 @keyframes footer-pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.35; }
@@ -2104,29 +2104,6 @@ body.menu-open {
 .footer-watermark-i {
   font-style: italic;
   letter-spacing: -0.02em;
-}
-
-/* ---------- ASCII-арт по бокам (руки у оригинала) ---------- */
-.footer-ascii {
-  position: absolute;
-  top: 12.5%;
-  bottom: 0;
-  width: 50%;
-  z-index: 20;
-  pointer-events: none;
-}
-
-.footer-ascii-left { left: 0; }
-.footer-ascii-right { right: 0; }
-
-.footer-ascii canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-@media (max-width: 1023px) {
-  .footer-ascii { display: none; }
 }
 
 /* ==========================================================================
