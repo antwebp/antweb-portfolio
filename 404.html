@@ -23,33 +23,37 @@
 
 <div class="easter-toast" id="easterToast">Любите детали? Мне тоже.</div>
 
-<header class="site-header" id="siteHeader">
-  <div class="container">
-    <a href="index.html#top" class="logo" id="logoMark">ANTWEB</a>
+<header class="site-header gf-header" id="siteHeader">
+  <a href="index.html#top" class="logo" id="logoMark">ANTWEB</a>
 
-    <nav class="nav-links">
-      <a href="index.html#about">Обо мне</a>
-      <a href="index.html#work">Проекты</a>
-      <a href="index.html#services">Услуги</a>
-      <a href="index.html#process">Этапы работ</a>
-      <a href="index.html#contact">Контакты</a>
-    </nav>
+  <button class="menu-toggle" id="burger" aria-label="Меню">
+    <span class="menu-toggle-label">Меню</span>
+    <span class="menu-toggle-icon"><span></span><span></span></span>
+  </button>
 
-    <div class="header-actions">
-      <button type="button" class="btn btn-primary js-open-modal">Обсудить проект</button>
-      <button class="burger" id="burger" aria-label="Меню">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+  <div class="header-cta">
+    <button type="button" class="btn btn-accent js-open-modal">
+      <span class="btn-ic btn-ic-l" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
+      <span class="btn-label">Обсудить проект</span>
+      <span class="btn-ic btn-ic-r" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
+    </button>
   </div>
 </header>
 
 <nav class="mobile-nav" id="mobileNav">
-  <a href="index.html#about">Обо мне</a>
-  <a href="index.html#work">Проекты</a>
-  <a href="index.html#services">Услуги</a>
-  <a href="index.html#process">Этапы работ</a>
-  <a href="index.html#contact">Контакты</a>
+  <div class="menu-overflow">
+    <div class="menu-pad">
+      <nav class="gf-menu" id="gfMenu" aria-label="Разделы сайта">
+        <span class="gf-menu-square" id="menuSquare" aria-hidden="true"></span>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#heroSection" class="gf-menu-item">Главная</a></div></div>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#about" class="gf-menu-item">Обо мне</a></div></div>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#work" class="gf-menu-item">Проекты</a></div></div>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#services" class="gf-menu-item">Услуги</a></div></div>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#process" class="gf-menu-item">Этапы работ</a></div></div>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#contact" class="gf-menu-item">Контакты</a></div></div>
+      </nav>
+    </div>
+  </div>
 </nav>
 
 <main>
@@ -65,13 +69,9 @@
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="container">
-    <span>© 2026 ANTWEB</span>
-    <div class="footer-links">
-      <a href="index.html">На главную</a>
-    </div>
-  </div>
+<footer class="legal-footer">
+  <span>© 2026 ANTWEB</span>
+  <a href="index.html#contact">Связаться</a>
 </footer>
 
 <button type="button" class="back-to-top" id="backToTop" aria-label="Наверх">↑</button>
