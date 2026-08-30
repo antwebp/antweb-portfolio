@@ -2764,3 +2764,120 @@ body.menu-open {
   .site-footer { min-height: 0; padding-top: 40px; }
   .footer-copy { padding-top: 40px; }
 }
+
+/* ============================================================
+   Политика конфиденциальности (отдельная страница)
+   ============================================================ */
+.legal {
+  padding: calc(var(--header-h) + 96px) var(--edge) 96px;
+  min-height: calc(100svh - 80px);
+}
+
+.legal-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.legal h1 {
+  font-size: clamp(34px, 4.5vw, 56px);
+  margin: 16px 0 10px;
+}
+
+.legal-updated {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+}
+
+.legal-body p {
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.legal-body strong {
+  color: var(--text);
+}
+
+.legal-body h2 {
+  font-size: 22px;
+  margin: 44px 0 14px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.legal-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.3s var(--ease);
+}
+
+.legal-body a:hover {
+  color: var(--accent-hover);
+}
+
+.legal-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 64px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding-bottom: 4px;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.legal-back:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.legal-back-arrow {
+  transition: transform 0.3s var(--ease);
+}
+
+.legal-back:hover .legal-back-arrow {
+  transform: translateX(-5px);
+}
+
+.legal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 28px var(--edge);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.legal-footer a {
+  color: var(--text-muted);
+  transition: color 0.3s var(--ease);
+}
+
+.legal-footer a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 767.98px) {
+  .legal {
+    padding-top: calc(var(--header-h) + 56px);
+    padding-bottom: 64px;
+  }
+
+  .legal-updated {
+    margin-bottom: 36px;
+  }
+
+  .legal-back {
+    margin-top: 48px;
+  }
+}

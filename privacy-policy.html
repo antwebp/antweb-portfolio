@@ -11,8 +11,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Golos+Text:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Golos+Text:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Handjet:wght@900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -20,80 +21,83 @@
 
 <div class="scroll-progress-track"><div class="scroll-progress-fill" id="scrollProgressFill"></div></div>
 
-<nav class="section-dots" id="sectionDots" aria-label="Навигация по разделам"></nav>
-
 <div class="easter-toast" id="easterToast">Любите детали? Мне тоже.</div>
 
-<header class="site-header" id="siteHeader">
-  <div class="container">
-    <a href="index.html#top" class="logo" id="logoMark">ANTWEB</a>
+<header class="site-header gf-header" id="siteHeader">
+  <a href="index.html#top" class="logo" id="logoMark">ANTWEB</a>
 
-    <nav class="nav-links">
-      <a href="index.html#about">Обо мне</a>
-      <a href="index.html#work">Проекты</a>
-      <a href="index.html#services">Услуги</a>
-      <a href="index.html#process">Этапы работ</a>
-      <a href="index.html#contact">Контакты</a>
-    </nav>
+  <button class="menu-toggle" id="burger" aria-label="Меню">
+    <span class="menu-toggle-label">Меню</span>
+    <span class="menu-toggle-icon"><span></span><span></span></span>
+  </button>
 
-    <div class="header-actions">
-      <button type="button" class="btn btn-primary js-open-modal">Обсудить проект</button>
-      <button class="burger" id="burger" aria-label="Меню">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+  <div class="header-cta">
+    <button type="button" class="btn btn-accent js-open-modal">
+      <span class="btn-ic btn-ic-l" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
+      <span class="btn-label">Обсудить проект</span>
+      <span class="btn-ic btn-ic-r" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></span>
+    </button>
   </div>
 </header>
 
 <nav class="mobile-nav" id="mobileNav">
-  <a href="index.html#about">Обо мне</a>
-  <a href="index.html#work">Проекты</a>
-  <a href="index.html#services">Услуги</a>
-  <a href="index.html#process">Этапы работ</a>
-  <a href="index.html#contact">Контакты</a>
+  <div class="menu-overflow">
+    <div class="menu-pad">
+      <nav class="gf-menu" id="gfMenu" aria-label="Разделы сайта">
+        <span class="gf-menu-square" id="menuSquare" aria-hidden="true"></span>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#heroSection" class="gf-menu-item">Главная</a></div></div>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#about" class="gf-menu-item">Обо мне</a></div></div>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#work" class="gf-menu-item">Проекты</a></div></div>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#services" class="gf-menu-item">Услуги</a></div></div>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#process" class="gf-menu-item">Этапы работ</a></div></div>
+        <div class="gf-menu-clip"><div class="gf-menu-in"><a href="index.html#contact" class="gf-menu-item">Контакты</a></div></div>
+      </nav>
+    </div>
+  </div>
 </nav>
 
-<main id="top">
+<main>
 
-  <!-- LEGAL -->
-  <section class="about">
-    <div class="container">
+  <section class="legal">
+    <div class="legal-wrap">
       <p class="eyebrow" data-animate>Документы</p>
-      <h2 data-animate data-animate-delay="1">Политика конфиденциальности</h2>
+      <h1 data-animate data-animate-delay="1">Политика конфиденциальности</h1>
+      <p class="legal-updated" data-animate data-animate-delay="2">Обновлено: август 2026</p>
 
-      <div class="about-body" data-animate data-animate-delay="2" style="margin-top: 32px;">
+      <div class="legal-body" data-animate data-animate-delay="2">
         <p>Настоящая политика определяет порядок обработки персональных данных на сайте ANTWEB (далее — «Сайт») в соответствии с Федеральным законом от 27.07.2006 №152-ФЗ «О персональных данных».</p>
 
-        <p><strong>1. Какие данные собираются</strong><br>
-        При заполнении формы заявки на Сайте я получаю имя и номер телефона, указанные вами добровольно.</p>
+        <h2>1. Какие данные собираются</h2>
+        <p>При заполнении формы заявки на Сайте я получаю имя и номер телефона, указанные вами добровольно.</p>
 
-        <p><strong>2. Цель обработки данных</strong><br>
-        Данные используются исключительно для связи с вами по поводу обсуждения проекта: звонок, сообщение в мессенджере или на почту.</p>
+        <h2>2. Цель обработки данных</h2>
+        <p>Данные используются исключительно для связи с вами по поводу обсуждения проекта: звонок, сообщение в мессенджере или на почту.</p>
 
-        <p><strong>3. Как обрабатываются данные</strong><br>
-        Заявка с формы направляется напрямую в мой личный Telegram. Данные не передаются третьим лицам, не используются для рассылок и не продаются.</p>
+        <h2>3. Как обрабатываются данные</h2>
+        <p>Заявка с формы направляется напрямую в мой личный Telegram. Данные не передаются третьим лицам, не используются для рассылок и не продаются.</p>
 
-        <p><strong>4. Хранение данных</strong><br>
-        Данные хранятся до момента завершения общения по заявке или до вашего запроса на удаление.</p>
+        <h2>4. Хранение данных</h2>
+        <p>Данные хранятся до момента завершения общения по заявке или до вашего запроса на удаление.</p>
 
-        <p><strong>5. Ваши права</strong><br>
-        Вы можете в любой момент запросить удаление своих данных, написав на <a href="mailto:anton.podg@gmail.com">anton.podg@gmail.com</a> или в Telegram <a href="https://t.me/ant_webp" target="_blank" rel="noopener">@ant_webp</a>.</p>
+        <h2>5. Ваши права</h2>
+        <p>Вы можете в любой момент запросить удаление своих данных, написав на <a href="mailto:anton.podg@gmail.com">anton.podg@gmail.com</a> или в Telegram <a href="https://t.me/ant_webp" target="_blank" rel="noopener">@ant_webp</a>.</p>
 
-        <p><strong>6. Согласие</strong><br>
-        Отправляя форму на Сайте, вы подтверждаете согласие на обработку указанных данных на условиях настоящей политики.</p>
+        <h2>6. Согласие</h2>
+        <p>Отправляя форму на Сайте, вы подтверждаете согласие на обработку указанных данных на условиях настоящей политики.</p>
       </div>
+
+      <a href="index.html#top" class="legal-back">
+        <span class="legal-back-arrow" aria-hidden="true">←</span>
+        На главную
+      </a>
     </div>
   </section>
 
 </main>
 
-<footer class="site-footer">
-  <div class="container">
-    <span>© 2026 ANTWEB</span>
-    <div class="footer-links">
-      <a href="index.html">На главную</a>
-    </div>
-  </div>
+<footer class="legal-footer">
+  <span>© 2026 ANTWEB</span>
+  <a href="index.html#contact">Связаться</a>
 </footer>
 
 <button type="button" class="back-to-top" id="backToTop" aria-label="Наверх">↑</button>
