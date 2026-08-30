@@ -2730,4 +2730,8 @@ body.menu-open {
   .footer-nav,
   .footer-info,
   .footer-status { display: none; }
+
+  /* футер по содержимому, а не на весь экран — иначе огромная пустота */
+  .site-footer { min-height: 0; padding-top: 40px; }
+  .footer-copy { padding-top: 40px; }
 }
