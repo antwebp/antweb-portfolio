@@ -322,6 +322,13 @@ if (gfMenu && menuSquare) {
   const placeSquare = (item, show) => {
     const size = menuSquare.offsetWidth;
     const shift = shiftValue();
+    // куда встаёт квадрат у помеченного пункта: на десктопе текст сдвигается
+    // на --menu-shift и квадрат занимает его место (сдвиг − офсет = 0);
+    // на мобильной текст не сдвигается (--menu-shift: 0) — квадрат
+    // остаётся левее текста, в паддинге панели, и не налезает на буквы
+    const cs = getComputedStyle(gfMenu);
+    const markedX = (parseFloat(cs.getPropertyValue('--menu-shift')) || 0) -
+      (parseFloat(cs.getPropertyValue('--square-offset')) || 0);
     let y = parseFloat(menuSquare.style.translate.split(' ')[1]) || 0;
     if (item) {
       // координату берём по обёртке .gf-menu-clip, а не по самому пункту:
@@ -331,7 +338,7 @@ if (gfMenu && menuSquare) {
       const wrapRect = item.closest('.gf-menu-clip').getBoundingClientRect();
       y = wrapRect.top - menuRect.top + (item.offsetHeight - size) / 2;
     }
-    menuSquare.style.translate = (show ? '0px' : -shift + 'px') + ' ' + y + 'px';
+    menuSquare.style.translate = (show ? markedX + 'px' : -shift + 'px') + ' ' + y + 'px';
     menuSquare.style.opacity = show ? '1' : '0';
   };
 

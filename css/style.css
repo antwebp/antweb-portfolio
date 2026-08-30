@@ -2589,8 +2589,21 @@ body.modal-open {
     display: none;
   }
 
+  /* как просил Антон: на мобильных стрип шапки во всю ширину экрана
+     и без зазора сверху (как у good-fella), отступ внутри — 16px */
+  :root {
+    --header-h: calc(var(--strip-h) + 8px);
+  }
+
+  .site-header::before {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
   .site-header.gf-header {
-    padding: calc(16px + var(--header-inner-pad)) 20px calc(8px + var(--header-inner-pad));
+    padding: var(--header-inner-pad) 16px calc(8px + var(--header-inner-pad));
+    min-height: calc(var(--strip-h) + 8px);
   }
 
   .menu-toggle {
