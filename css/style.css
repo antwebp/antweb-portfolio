@@ -1347,6 +1347,19 @@ body.menu-open {
   border-color: var(--accent-hover);
 }
 
+/* Очень узкие экраны (<380px): цена переносится под заголовок —
+   бейдж с nowrap не даёт строке сжиматься до ширины экрана */
+@media (max-width: 379px) {
+  .service-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .service-price {
+    justify-self: start;
+    margin-top: -6px;
+  }
+}
+
 /* ==========================================================================
    Process
    ========================================================================== */
@@ -2168,6 +2181,22 @@ body.menu-open {
   pointer-events: auto;
 }
 
+/* На телефонах и планшетах кнопку «наверх» прячем: она перекрывает
+   контент (бейджи цен в услугах), а меню и так всегда под рукой */
+@media (max-width: 1023.98px) {
+  .back-to-top {
+    display: none;
+  }
+}
+
+/* Якорные ссылки на мобильных: секция не должна заворачиваться
+   под фиксированную шапку */
+@media (max-width: 1023.98px) {
+  main > section[id] {
+    scroll-margin-top: calc(var(--header-h) + 8px);
+  }
+}
+
 .back-to-top:hover {
   background: var(--accent-hover);
 }
@@ -2628,6 +2657,21 @@ body.modal-open {
 
   .hero-link {
     margin-left: 0;
+  }
+}
+
+/* Очень узкие экраны (<380px): контакты в одну колонку —
+   двухколоночная сетка не сжимается до ширины экрана */
+@media (max-width: 379px) {
+  .contact-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  /* «начинается&nbsp;здесь.» — одно слово-строка, на 320px
+     при 38px не влезает */
+  .contact-title {
+    font-size: 31px;
   }
 }
 
