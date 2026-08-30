@@ -43,6 +43,12 @@ html.lenis body {
   height: auto;
 }
 
+/* место под скроллбар резервируется всегда: иначе при блокировке скролла
+   модалкой полоса исчезает и страницу «дёргает» вбок */
+html {
+  scrollbar-gutter: stable;
+}
+
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
@@ -2191,11 +2197,20 @@ body.menu-open .site-header {
   pointer-events: auto;
 }
 
-/* На телефонах и планшетах кнопку «наверх» прячем: она перекрывает
-   контент (бейджи цен в услугах), а меню и так всегда под рукой */
+/* в самом конце сайта (футер дошёл до шапки) — акцентный цвет */
+.back-to-top.end {
+  background: var(--accent-hover);
+}
+
+/* на мобильном вернули стрелку: компактнее и у края экрана (меньше
+   перекрывает контент) */
 @media (max-width: 1023.98px) {
   .back-to-top {
-    display: none;
+    right: 16px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
   }
 }
 
@@ -2225,7 +2240,8 @@ body.menu-open .site-header {
   padding: 20px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s var(--ease);
+  /* мягкая экспонента как у панели меню (0.87,0,0.13,1) + блюр фона */
+  transition: opacity 0.45s cubic-bezier(0.87, 0, 0.13, 1);
 }
 
 .modal-overlay.open {
@@ -2239,8 +2255,8 @@ body.menu-open .site-header {
   max-width: 420px;
   padding: 40px;
   position: relative;
-  transform: translateY(16px);
-  transition: transform 0.35s var(--ease);
+  transform: translateY(28px) scale(0.97);
+  transition: transform 0.45s cubic-bezier(0.87, 0, 0.13, 1);
 }
 
 .modal-overlay.open .modal {

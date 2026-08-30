@@ -130,6 +130,10 @@ const onScroll = () => {
   } else {
     backToTop.classList.remove('visible');
   }
+
+  // в самом конце сайта стрелка «наверх» подсвечивается акцентом
+  const atEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 60;
+  backToTop.classList.toggle('end', atEnd);
 };
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
@@ -220,6 +224,13 @@ const updateStackTops = () => {
   }
   const vh = window.innerHeight;
   stackSections.forEach((sec) => {
+    /* sticky-stack есть только у секций под CSS-правилом position: sticky
+       (index-страница). Секции без sticky (страница политики, 404) не трогаем:
+       style.top на position:relative уводит контент в минус — страница «пустая» */
+    if (getComputedStyle(sec).position !== 'sticky') {
+      sec.style.removeProperty('top');
+      return;
+    }
     const h = sec.getBoundingClientRect().height;
     sec.style.top = Math.min(0, vh - h) + 'px';
   });
@@ -545,12 +556,14 @@ const openModal = () => {
   modalStatus.textContent = '';
   leadModal.classList.add('open');
   document.body.classList.add('modal-open');
-  document.getElementById('leadName').focus();
+  if (lenis) lenis.stop(); // фон не должен ехать под открытой модалкой
+  document.getElementById('leadName').focus({ preventScroll: true });
 };
 
 const closeModal = () => {
   leadModal.classList.remove('open');
   document.body.classList.remove('modal-open');
+  if (lenis) lenis.start();
 };
 
 document.querySelectorAll('.js-open-modal').forEach((el) => {
