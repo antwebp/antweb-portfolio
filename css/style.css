@@ -1215,7 +1215,6 @@ body.menu-open {
 
 /* ширина контейнера как в hero (первой секции): максимум 1920px
    + боковые поля --edge */
-.about .container,
 .services .container,
 .process .container {
   max-width: calc(var(--site-max-width) + var(--edge) * 2);
