@@ -1208,15 +1208,17 @@ body.menu-open {
    Services
    ========================================================================== */
 .services {
-  /* та же тёмная тема, что у «Как я работаю» (data-theme="dark") */
+  /* та же тёмная тема, что у «Как я работаю» (data-theme="dark");
+     секция — во всю ширину, как hero */
   background: var(--bg);
-  border-radius: var(--radius-lg);
-  margin: 0 24px;
-  width: calc(100% - 48px);
 }
 
-.services .container {
-  max-width: calc(var(--container) - 48px);
+/* ширина контейнера как в hero (первой секции): максимум 1920px
+   + боковые поля --edge */
+.services .container,
+.process .container {
+  max-width: calc(var(--site-max-width) + var(--edge) * 2);
+  padding: 0 var(--edge);
 }
 
 .services-grid {
@@ -2582,12 +2584,6 @@ body.modal-open {
 
   .faq-a-clip p {
     max-width: 100%;
-  }
-
-  .services {
-    margin: 0 12px;
-    width: calc(100% - 24px);
-    border-radius: var(--radius-md);
   }
 
   .hero-cta {
