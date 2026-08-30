@@ -726,6 +726,8 @@ uniform vec2 uResolution;
 uniform float uCellSize;
 uniform vec3 uColor;        // фирменный цвет частиц
 uniform vec3 uColorDark;    // тёмный вариант для теней
+uniform float uLumFloor;    // нижний порог яркости (на мелких канвасах ниже —
+                            // иначе теневая сторона и куртка = символ-пробел)
 uniform vec2 uMouse;
 uniform float uGooeyIntensity;
 uniform float uTime;
@@ -765,7 +767,7 @@ void main() {
   // фон уже вырезан (прозрачный cutout) — работаем только с моделью
   float luminance = dot(tex.rgb, vec3(0.299, 0.587, 0.114));
   // отсекаем самые тёмные шумы (кресло) + контраст + подъём средних тонов
-  luminance = clamp((luminance - 0.15) / 0.85, 0.0, 1.0);
+  luminance = clamp((luminance - uLumFloor) / (1.0 - uLumFloor), 0.0, 1.0);
   luminance = clamp((luminance - 0.5) * 1.5 + 0.5, 0.0, 1.0);
   luminance = pow(luminance, 0.8);
 
@@ -965,7 +967,8 @@ function init(src) {
     uResolution:     { value: new THREE.Vector2(1, 1) },
     uCellSize:       { value: 18 },
     uColor:          { value: new THREE.Color('#f5132e') },
-    uColorDark:      { value: new THREE.Color('#6e2118') },
+    uColorDark:      { value: new THREE.Color('#6e2118') }, // десктоп: тёмный марон (утверждён)
+    uLumFloor:       { value: 0.15 },
     uMouse:          { value: new THREE.Vector2(-1, -1) },
     uGooeyIntensity: { value: 0 },
     uTime:           { value: 0 },
@@ -988,14 +991,31 @@ function init(src) {
     const w = stage.clientWidth, h = stage.clientHeight;
     renderer.setSize(w, h);
     uniforms.uResolution.value.set(w * DPR, h * DPR);
-    // ≤980px (плитка под текстом): ячейки мельче (5px вместо 8) — стейдж
-    // низкий, при 8px на лицо приходится в разы меньше букв, детали
-    // (профиль, бородка) рассыпаются в редкие точки и «пропадают»
-    uniforms.uCellSize.value = (window.matchMedia('(max-width: 980px)').matches ? 5 : 8) * DPR;
+    uniforms.uCellSize.value = 8 * DPR; // 8px буфера — как у них (cellSize: 8)
+    // тени на ≤980px светлее: стейдж маленький, тёмные клетки (#6e2118 на
+    // #141314) почти не видны — теневая сторона и куртка сливаются с фоном,
+    // и модель выглядит «укрытой» наполовину. На десктопе канвас большой —
+    // утверждённый тёмный цвет остаётся
+    uniforms.uColorDark.value.set(
+      window.matchMedia('(max-width: 980px)').matches ? '#b0402f' : '#6e2118'
+    );
     // подгонка фото (contain при любой раскладке: вся модель с полями)
     const canvasAspect = w / h, imgAspect = src.width / src.height;
     if (imgAspect > canvasAspect) uniforms.uCoverScale.value.set(1, imgAspect / canvasAspect);
     else uniforms.uCoverScale.value.set(canvasAspect / imgAspect, 1);
+    // ширина модели на экране: на небольшом канвасе (планшет, мобильный)
+    // 60% буста — почти чёрные клетки: с порогом 0.15 они получают
+    // символ-пробел и модель выглядит «закрытой» наполовину.
+    // На мелких канвасах порог ниже и тени светлее — модель отрисована
+    // целиком; на десктопном канвасе ≥662px всё как было (утверждено)
+    const modelW = Math.min(w, h * imgAspect);
+    if (modelW < 520) {
+      uniforms.uLumFloor.value = -0.35;
+      uniforms.uColorDark.value.set('#9c4130');
+    } else {
+      uniforms.uLumFloor.value = 0.15;
+      uniforms.uColorDark.value.set('#6e2118');
+    }
   }
   resize();
   window.addEventListener('resize', resize);
