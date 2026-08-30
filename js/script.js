@@ -122,30 +122,7 @@ backToTop.addEventListener('click', () => {
   scrollToTarget(0);
 });
 
-// Header adapts to dark sections scrolling underneath it
-const darkSections = document.querySelectorAll('[data-theme="dark"]');
-
-if (darkSections.length && 'IntersectionObserver' in window) {
-  const activeDarkSections = new Set();
-  const darkSectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          activeDarkSections.add(entry.target);
-        } else {
-          activeDarkSections.delete(entry.target);
-        }
-      });
-      header.classList.toggle('on-dark', activeDarkSections.size > 0);
-      // панель меню тоже подстраивается под секцию (как surface у good-fella)
-      const mnav = document.getElementById('mobileNav');
-      if (mnav) mnav.classList.toggle('on-dark', activeDarkSections.size > 0);
-    },
-    { rootMargin: '-80px 0px -85% 0px', threshold: 0 }
-  );
-
-  darkSections.forEach((section) => darkSectionObserver.observe(section));
-}
+// Header adapts to the section under it (see updateSectionState below)
 
 // Logo easter egg: 5 quick clicks
 const logoMark = document.getElementById('logoMark');
@@ -205,24 +182,69 @@ if (dotsNav) {
 
 let activeSectionId = null;
 
-if (sectionEls.length && 'IntersectionObserver' in window) {
-  const setActiveSection = (id) => {
-    activeSectionId = id;
-    dotButtons.forEach((btn, key) => btn.classList.toggle('active', key === id));
-    navLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === '#' + id));
-  };
+const setActiveSection = (id) => {
+  if (id === activeSectionId) return;
+  activeSectionId = id;
+  dotButtons.forEach((btn, key) => btn.classList.toggle('active', key === id));
+  navLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === '#' + id));
+};
 
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveSection(entry.target.id);
-      });
-    },
-    { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
-  );
+// ==========================================================================
+// Sticky stacking — наезд секций (как у good-fella.com)
+// Каждая секция «замерзает» (CSS-правило main > section: position sticky),
+// следующая наезжает поверх. Смещение top = высота секции − вьюпорт:
+// секция замирает ровно на своём последнем экране.
+// ==========================================================================
+const stackSections = [...document.querySelectorAll('main > section')];
 
-  sectionEls.forEach((sec) => sectionObserver.observe(sec));
+const updateStackTops = () => {
+  if (!window.matchMedia('(min-width: 1024px)').matches) {
+    stackSections.forEach((sec) => sec.style.removeProperty('top'));
+    return;
+  }
+  const vh = window.innerHeight;
+  stackSections.forEach((sec) => {
+    const h = sec.getBoundingClientRect().height;
+    sec.style.top = Math.min(0, vh - h) + 'px';
+  });
+};
+
+// Замороженная секция всегда остаётся в вьюпорте под наезжающими —
+// IntersectionObserver тут врёт (никогда не «уходит»). Поэтому и тема шапки,
+// и активная секция считаются по позиции: идём по секциям в порядке DOM,
+// верхним слоем в точке под шапкой будет последняя перекрывающая её секция.
+const probeY = () => Math.max(24, header.offsetHeight / 2);
+
+const currentTopSection = () => {
+  let current = null;
+  sectionEls.forEach((sec) => {
+    const r = sec.getBoundingClientRect();
+    if (r.top <= probeY() && r.bottom > probeY()) current = sec;
+  });
+  return current;
+};
+
+const updateSectionState = () => {
+  const sec = currentTopSection();
+  const onDark = !!(sec && sec.dataset.theme === 'dark');
+  header.classList.toggle('on-dark', onDark);
+  // панель меню тоже подстраивается под секцию (как surface у good-fella)
+  const mnav = document.getElementById('mobileNav');
+  if (mnav) mnav.classList.toggle('on-dark', onDark);
+  if (sec) setActiveSection(sec.id);
+};
+
+window.addEventListener('scroll', updateSectionState, { passive: true });
+window.addEventListener('resize', () => {
+  updateStackTops();
+  updateSectionState();
+});
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(() => { updateStackTops(); updateSectionState(); });
 }
+window.addEventListener('load', () => { updateStackTops(); updateSectionState(); });
+updateStackTops();
+updateSectionState();
 
 // Mobile menu toggle
 const burger = document.getElementById('burger');
