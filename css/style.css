@@ -1739,6 +1739,10 @@ body.menu-open {
 
 .site-footer {
   position: relative;
+  /* футер лежит ПОД секциями (как у good-fella): тёмное полотно
+     «выезжает» из-под контактов, граница всегда по их нижнему краю;
+     без этого футер верхом наезжает на контент контактов */
+  z-index: -1;
   display: flex;
   overflow: hidden;
   min-height: 100svh;
