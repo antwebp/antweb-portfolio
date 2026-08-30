@@ -1417,11 +1417,6 @@ body.menu-open {
   padding: 0 var(--edge);
 }
 
-.faq-title {
-  position: sticky;
-  top: calc(var(--header-h) + 32px);
-}
-
 .faq-title h2 {
   font-size: clamp(36px, 2.2857vw + 27.43px, 64px);
   line-height: 1.125;
