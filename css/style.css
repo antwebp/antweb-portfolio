@@ -2129,20 +2129,27 @@ body.menu-open {
   overflow: hidden;
 }
 
+/* Водяной знак — SVG с textLength: текст гарантированно вписан в ширину
+   экрана (раньше vw-размер с потолком 432px вылезал за край на широких
+   мониторах). Пропорции как раньше: буквы ~18% ширины по высоте */
 .footer-watermark {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: #fff;
+  opacity: 0.10;   /* их opacity-10 */
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: min(22.5vw, 432px);
-  line-height: 0.9;
   letter-spacing: -0.035em;
-  text-align: center;
-  white-space: nowrap;
-  color: #fff;
-  opacity: 0.10;   /* их opacity-10 */
+  transform: translateY(12%); /* буквы уходят под нижний край страницы */
   user-select: none;
   pointer-events: none;
-  transform: translateY(12%);
-  margin-bottom: -0.05em; /* обрезаем «хвост» межстрочного интервала */
+}
+
+/* размер шрифта в единицах viewBox: заглавные ~184 ед. — весь viewBox
+   по высоте; textLength прижимает строку ровно к краям по ширине */
+.footer-watermark text {
+  font-size: 254px;
 }
 
 /* вторая половина — курсивом, как «Fella» у Good Fella */
@@ -2714,4 +2721,13 @@ body.menu-open {
 
 .burger.active span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Мобильный футер: навигация дублирует меню в шапке, контакты — секцию
+   «Контакты» прямо над футером, статус-строки на телефоне не нужны.
+   Остаётся: форма заявки, копирайт (год / имя / политика) и водяной знак */
+@media (max-width: 760px) {
+  .footer-nav,
+  .footer-info,
+  .footer-status { display: none; }
 }
